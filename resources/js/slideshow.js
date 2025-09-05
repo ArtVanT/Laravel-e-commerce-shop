@@ -1,4 +1,5 @@
-export default {
+export default function(){
+    return{
     currentPosition: 0,
     slideWidth: 308,
     gap: 12,
@@ -70,4 +71,5 @@ export default {
     destroy() {
         clearInterval(this.autoSlideInterval);
     },
+}
 };

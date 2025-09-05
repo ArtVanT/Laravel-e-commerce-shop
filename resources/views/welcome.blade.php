@@ -12,7 +12,7 @@
 
 <body>
 
-
+@livewireScripts
     <div class="flex flex-col items-center mt-5">
 
         <div class="flex gap-6 mb-8">

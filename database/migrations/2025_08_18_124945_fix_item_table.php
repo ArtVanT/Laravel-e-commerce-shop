@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -12,11 +13,9 @@ return new class extends Migration {
     {
         //
         Schema::table('items', function (Blueprint $table) {
-            $table->dropForeign(['user_id'])->constrained()->cascadeOnDelete();
-            $table->dropColumn('user_id');
-
-
+            $table->string('item_pic')->after('item_price');
         });
+
     }
 
     /**

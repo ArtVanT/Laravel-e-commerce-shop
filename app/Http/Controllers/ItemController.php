@@ -34,7 +34,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
 
-        $user = auth()->user();
+       $user = auth()->user();
         $validated = $request->validate([
             'item_name' => ['required', 'string', 'max:255'],
             'item_description' => ['required', 'string'],

@@ -12,7 +12,7 @@
         <p class="item__desc truncate font-mono"> {{ $item->item_description }} </p>
         <div class="item__price"><span>Price: </span><span class="text-red-600">{{ $item->item_price }}</span><span
                         class="text-green-600">$</span></div>
-        <img src="{{ Storage::url($item->item_pic) }}" alt="{{ $item->item_pic }}" class="item_image truncate">
+        <img src="{{ Str::startsWith($item->item_pic, 'http') ? $item->item_pic : Storage::url($item->item_pic) }}" alt="{{ $item->item_pic }}" class="item_image truncate">
 
         <div class="flex gap-6">
                 <div class="flex bg-red-500 rounded-md p-5"><a href="" class="text-white font-mono font-bold">find

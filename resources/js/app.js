@@ -1,7 +1,7 @@
-import Alpine from "alpinejs";
 import slideshow from "./slideshow.js";
-window.Alpine = Alpine;
 
-Alpine.data("slideshow", () => slideshow);
-
-Alpine.start();
+// Wait for Livewire's Alpine to initialize
+document.addEventListener('alpine:init', () => {
+    // Register your slideshow component
+    window.Alpine.data('slideshow', slideshow);
+});
