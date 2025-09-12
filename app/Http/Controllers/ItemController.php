@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ItemController extends Controller
 {
     /**
@@ -34,7 +34,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
 
-       $user = auth()->user();
+       $user = Auth::user();
         $validated = $request->validate([
             'item_name' => ['required', 'string', 'max:255'],
             'item_description' => ['required', 'string'],
@@ -62,9 +62,10 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Item $item)
     {
         //
+        return view('show', compact('item'));
 
     }
 
@@ -82,6 +83,7 @@ class ItemController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
     }
 
     /**
@@ -90,5 +92,7 @@ class ItemController extends Controller
     public function destroy(string $id)
     {
         //
+        
+
     }
 }

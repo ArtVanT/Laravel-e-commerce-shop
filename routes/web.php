@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ItemController::class, 'index'])->name('home');
-
+Route::get('/items/{item:item_name}', [ItemController::class, 'show'])->name('items.show');
 
 
 Route::view('dashboard', 'dashboard')
@@ -32,9 +32,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('/', [ItemController::class, 'store'])->name('items.store');
-    Route::get('{user}/items/{item}/edit', Edit::class)->name('items.edit');
+    Route::get('/{user:name}/items/{item:item_name}/edit', Edit::class)->name('items.edit');
     //Route::put('/{item}', [ItemController::class, 'update'])->name('items.update');
-    Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
+    Route::delete('/{user:name}/items/{item:item_name}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 
 });
