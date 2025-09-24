@@ -62,9 +62,10 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Item $item)
+    public function show($slug)
     {
         //
+         $item = Item::where('slug', $slug)->firstOrFail();
         return view('show', compact('item'));
 
     }

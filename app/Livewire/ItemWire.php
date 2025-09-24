@@ -11,12 +11,20 @@ use Livewire\Component;
 
 class ItemWire extends Component
 {
-    
+    public Item $item;
+    public $itemPrice;
+
+    public function mount(int $itemId)
+    {
+        $this->item = Item::findOrFail($itemId);
+        $this->itemPrice = $this->item->item_price;
+    }
     public function render()
     {
-        $items = Item::all();
-        return view('livewire.item-wire', [
-        'items' => $items
+        
+    return view('livewire.item-wire', [
+        'item' => $this->item,   // the item from mount()
+        'items' => Item::all(),  // optional, if you actually need the list
     ]);
     }
 }

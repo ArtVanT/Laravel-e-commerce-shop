@@ -20,13 +20,20 @@ class Basket extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function basketItems()
+{
+    return $this->hasMany(BasketItem::class);
+}
      /**
      * Get all items in this basket.
      */
-    public function items(): HasMany
-    {
-        return $this->hasMany(BasketItem::class, 'basket_id');
-    }
+   
+
+    public function items()
+{
+    return $this->belongsToMany(Item::class, 'basket_items')->withPivot('quantity', 'price_at_time')->withTimestamps();
+}
     
     /**
      * Get the total price of the basket.

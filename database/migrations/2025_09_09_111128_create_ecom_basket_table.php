@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('item_id');
 
             $table->integer('quantity')->default(1);
-            $table->decimal('price_at_time', 10, 2);
+            $table->decimal('price_at_time', 10, 2)->nullable();
             $table->timestamps();
 
             // Foreign keys with custom names

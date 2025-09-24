@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Item>
  */
@@ -43,6 +45,9 @@ class ItemFactory extends Factory
         return [
             //
             'item_name' => $this->faker->word(),
+    'slug' => function(array $attributes) {
+        return Str::slug($attributes['item_name']);
+    },
             'item_description' => $this->faker->sentence(),
             'item_num'=> $this->faker->randomNumber(),
             'item_price' => $this->faker->randomFloat(2, 1, 100),
