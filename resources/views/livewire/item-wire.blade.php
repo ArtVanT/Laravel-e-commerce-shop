@@ -26,7 +26,7 @@ toggleBtn: function() { this.open = !this.open; }
         x-transition:leave-end="opacity-0 scale-90"
         class="z-100 -translate-y-34 translate-x-42 absolute top-0 left-0 w-full h-full"
                 >
-                <livewire:basket :item-id="$item->id" :item-price="$item->item_price" />
+                <livewire:basket :item="$item" :key="$item->id">
                         </div>
         
       

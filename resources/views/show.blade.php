@@ -14,6 +14,8 @@
     <p class="text-left">Quantity: {{ $item->item_num }}</p>
     </div>
     <img src="{{ asset('storage/' . $item->item_pic) }}" alt="{{ $item->item_name }}">
-<livewire:item-wire :item-id="$item->id" :item-price="$item->item_price" class="mt-4 "/>
+   
+        <livewire:item-wire :item="$item"  class="mt-4 "/>
+   
 </body>
 </html>

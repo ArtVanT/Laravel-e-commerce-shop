@@ -1,4 +1,4 @@
-<div class="w-fit h-fit flex flex-col p-4 bg-amber-100 rounded-md gap-4">
+<div class="w-2xs h-fit flex flex-col p-4 bg-amber-100 rounded-md gap-4">
     <div class="font-extra-bold text-slate-900 text-5xl cursor-pointer flex justify-end" @click="toggleBtn">X</div>
     <form  class="flex" wire:submit.prevent.live="createBasket">
     <input type="text" wire:model="basketName" class="w-full h-10 border border-gray-300 rounded-l-md px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter cart name">
@@ -11,7 +11,7 @@
 
 <a href="#" class="inline-flex pt-4 text-2xl font-mono font-extrabold text-slate-950">{{ $basket->name }}</a>
 
-<button wire:click.prevent="AddItem({{ $basket->id }})" class="inline-flex justify-center items-center !h-10 w-10 bg-green-500 rounded-md p-2 text-white font-mono font-bold">+</button>
+<button wire:click.prevent="AddItem({{ $basket->id }}, {{ $item->id }})" class="inline-flex justify-center items-center !h-10 w-10 bg-green-500 rounded-md p-2 text-white font-mono font-bold">+</button>
 <button wire:click.prevent="deleteBasket({{ $basket->id }})" class="inline-flex justify-center items-center !h-10 w-10 bg-red-500 rounded-md p-2 text-white font-mono font-bold">X</button>
 </div>
  

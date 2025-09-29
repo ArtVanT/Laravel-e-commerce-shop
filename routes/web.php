@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [ItemController::class, 'index'])->name('home');
-Route::get('/items/{item:item_name}', [ItemController::class, 'show'])->name('items.show');
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
 
 Route::view('dashboard', 'dashboard')

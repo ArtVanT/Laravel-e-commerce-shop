@@ -14,10 +14,16 @@ class ItemWire extends Component
     public Item $item;
     public $itemPrice;
 
-    public function mount(int $itemId)
+    public $itemId;
+   public $items;
+
+
+    public function mount(Item $item)
     {
-        $this->item = Item::findOrFail($itemId);
-        $this->itemPrice = $this->item->item_price;
+        
+        $this->item = $item;
+       $this->items = Item::all();
+        
     }
     public function render()
     {

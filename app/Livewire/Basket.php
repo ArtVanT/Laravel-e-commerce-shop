@@ -13,22 +13,18 @@ class Basket extends Component
 {
     public $baskets;
     public $basketName;
-
+    public $basketItem;
     public BasketModel $basket;
     public $item;
     public $itemId;
     public $message;
-
-    public $itemPrice;
-    public function mount(int $itemId)
+  
+    // public $itemPrice;
+    public function mount(Item $item)
     {
-        $this->baskets = BasketModel::with('items')->where('user_id', Auth::id())->get();
-         $this->itemId = $itemId;
-         $this->item = Item::findOrFail($itemId);
-         
-
-         
-         
+       $this->item   = $item;
+    $this->itemId = $item->id;
+    $this->baskets = BasketModel::with('items')->where('user_id', Auth::id())->get();
     }
 
        public function hydrate()
@@ -63,28 +59,42 @@ class Basket extends Component
 
     }
 
-    public function AddItem(int $basketId){
+    public function AddItem($basketId, $itemId){
+
 
        if (! Auth::check()) {
         $this->message = "You need to log in to add items.";
         return;
     }
     $basket = BasketModel::where("id", $basketId)->where("user_id", Auth::id())->firstOrFail();
-    if (!$basket) {
-        $this->message = "Basket not found or you do not have permission to modify it.";
-        return;
+
+    $existing = BasketItem::where('basket_id', $basketId)->where('item_id', $itemId)->first();
+    if ($existing) {
+        $existing->update([
+            'quantity' => $existing->quantity + 1,
+        ]);
+    }else{
+        $basket->items()->attach($itemId, [
+            'quantity' => 1,
+            'price_at_time' => $this->item->item_price,
+        ]);
     }
 
-    $basket->items()->syncWithoutDetaching([$this->itemId => ['quantity' => 1,
-    'price_at_time' => $this->item->item_price,
-]
+//     $basket->items()->syncWithoutDetaching([$this->itemId => ['quantity' => 1,
+//     'price_at_time' => $this->item->item_price,
+// ]
     
-]);
+// ]);
 
 $this->message = "Item added to basket '{$basket->name}'!";
     $this->baskets = BasketModel::with('items')->where('user_id', Auth::id())->get();
 
 }
+
+
+
+
+
 
 public function deleteBasket($id){
 $basket = BasketModel::where('id', $id)->where('user_id', Auth::id())->first();

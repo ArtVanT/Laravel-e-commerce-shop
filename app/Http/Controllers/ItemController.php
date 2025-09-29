@@ -14,6 +14,7 @@ class ItemController extends Controller
     {
         //
         $items = Item::latest()->get();
+        
 
         return view('welcome', compact('items'));
     }
@@ -53,12 +54,16 @@ class ItemController extends Controller
             'item_pic' => $path
         ]);
 
-
+       
 
         return redirect()->route('home')->with('item', $item);
 
     }
-
+//     public function render()
+// {
+//     return view('components.item-card',compact('itemId')); // expose to Blade
+    
+// }
     /**
      * Display the specified resource.
      */
@@ -66,6 +71,8 @@ class ItemController extends Controller
     {
         //
          $item = Item::where('slug', $slug)->firstOrFail();
+        $items = Item::all();
+
         return view('show', compact('item'));
 
     }
